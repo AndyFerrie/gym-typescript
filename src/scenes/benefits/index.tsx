@@ -2,7 +2,9 @@ import HText from "@/shared/HText";
 import { BenefitType, SelectedPage } from "@/shared/types";
 import { HomeModernIcon, UserGroupIcon, AcademicCapIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import BenefitsPageGraphic from "@/assets/BenefitsPageGraphic.png"
 import Benefit from "./Benefit";
+import ActionButton from "@/shared/ActionButton";
 
 const benefits: Array<BenefitType> = [
     {
@@ -81,27 +83,55 @@ const Benefits = ({setSelectedPage}: Props) => {
             </motion.div>
 
             {/* GRAPHICS AND DESCRIPTION */}
-            <div>
+            <div className="mt-16 items-center justify-between gap-20 md:mt-28 md:flex">
                 {/* GRAPHIC  */}
-                <img src="" alt="" />
+                <img className="mx-auto" src={BenefitsPageGraphic} alt="benfits-page-graphic" />
                 {/* DESCRIPTION */}
                 <div>
                     {/* TITLE */}
                     <div className="relative">
                         <div className="before:absolute before:-top-20 before:-left-20 before:z-[-1] before:content-abstractwaves">
-                            <div>
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.5 }}
+                                transition={{ duration: 0.5 }}
+                                variants={{
+                                    hidden: { opacity: 0, x: 50 },
+                                    visible: { opacity: 1, x: 0 },
+                                }}
+                            >
                                 <HText>
                                     MILLIONS OF HAPPY MEMBERS GETTING{" "}
                                     <span className="text-primary-500">
                                         FIT
                                     </span>
                                 </HText>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                     {/* DESCRIPTION */}
-
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        variants={{
+                            hidden: { opacity: 0, x: 50 },
+                            visible: { opacity: 1, x: 0 },
+                        }}
+                    >
+                        <p className="my-5">At our gym, our top priority is the well-being and satisfaction of our members, and we're thrilled to have millions of happy individuals on their fitness journeys with us. We understand that getting fit is a personal journey, and our supportive community of members fosters an environment of motivation and camaraderie. </p>
+                        <p className="mb-5">From weight loss milestones to strength gains and overall fitness transformations, our millions of happy members inspire us daily. We're not just about getting fit; we're about fostering a positive and lasting impact on lives, and our thriving community of fitness enthusiasts is a testament to that commitment.</p>
+                    </motion.div>
                     {/* BUTTON */}
+                    <div className="relative mt-16">
+                        <div className="before:absolute before:-bottom-20 before:right-40 before:z-[-1] before:content-sparkles">
+                            <ActionButton setSelectedPage={setSelectedPage}>
+                                Join Now
+                            </ActionButton>
+                        </div>
+                    </div>
                 </div>
             </div>
         </motion.div>
